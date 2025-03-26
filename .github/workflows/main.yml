@@ -1,0 +1,15 @@
+name: Secret Test Workflow  # Name des Workflows
+
+on: [push]  # Der Workflow startet bei jedem Push ins Repository
+
+jobs:
+  test-secret:
+    runs-on: ubuntu-latest  # Die Ausführung erfolgt auf einem Ubuntu-Runner
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3  # Holt den aktuellen Stand des Repos
+
+      - name: Secret verwenden
+        run: echo "Das Secret ist gesetzt."
+        env:
+          MY_SECRET: ${{ secrets.API_KEY }}  # Hier wird das Secret als Umgebungsvariable gesetzt
